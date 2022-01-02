@@ -1,9 +1,14 @@
-import "./App.css";
+import Header from "./components/Header";
+
+// Get Info of the Search Bar
+const getInfoSB = (info) => {
+  console.log(info);
+};
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World!</h1>
+      <Header onGetInfo={getInfoSB} />
     </div>
   );
 }

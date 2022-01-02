@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import Card from "./components/Card";
+import { useState } from "react";
+import Cards from "./components/Cards";
 import Header from "./components/Header";
 
 function App() {
@@ -31,6 +31,8 @@ function App() {
         albumName: result.collectionName,
         time: result.trackTimeMillis,
         price: result.trackPrice,
+        previewUrl: result.previewUrl,
+        trackId: result.trackId,
       };
 
       console.log("This is the clean Data: ", cleanData);
@@ -41,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <Header onGetInfo={getInfoSB} />
-      <Card songs={songs} />
+      <Cards songs={songs} />
     </div>
   );
 }

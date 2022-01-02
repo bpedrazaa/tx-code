@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cards from "./components/Cards";
 import Header from "./components/Header";
+import Table from "./components/Table";
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -26,7 +27,7 @@ function App() {
           songName: result.trackName,
           artistName: result.artistName,
           albumName: result.collectionName,
-          time: result.trackTimeMillis,
+          time: result.trackTimeMillis / 1000,
           price: result.trackPrice,
           previewUrl: result.previewUrl,
           trackId: result.trackId,
@@ -51,11 +52,28 @@ function App() {
     }
   };
 
+  const renderApp = () => {
+    if (songs.length < 1) {
+      return (
+        <div className="alert alert-warning mx-auto" role="alert">
+          No songs to show
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Cards songs={songs} />
+          <Table songs={songs} />
+        </div>
+      );
+    }
+  };
+
   // To render
   return (
     <div className="App">
       <Header onGetInfo={getInfoSB} />
-      <Cards songs={songs} />
+      {renderApp()}
     </div>
   );
 }

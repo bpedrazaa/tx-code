@@ -15,9 +15,7 @@ const Card = ({ songInfo }) => {
       <ul className="list-group list-group-flush">
         <li className="list-group-item">ARTIST: {songInfo.artistName}</li>
         <li className="list-group-item">ALBUM: {songInfo.albumName}</li>
-        <li className="list-group-item">
-          DURATION: {songInfo.time / 1000} sec
-        </li>
+        <li className="list-group-item">DURATION: {songInfo.time} sec</li>
         <li className="list-group-item">PRICE: {songInfo.price} $</li>
       </ul>
       <div className="card-body">

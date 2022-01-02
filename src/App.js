@@ -5,6 +5,7 @@ import Table from "./components/Table";
 
 function App() {
   const [songs, setSongs] = useState([]);
+  const [viewTable, setViewTable] = useState(false);
 
   // Get Info of the Search Bar
   const getInfoSB = async ({ text }) => {
@@ -52,27 +53,51 @@ function App() {
     }
   };
 
+  // Toggle the visibility of the table and cards buttons
+  const toggleTable = () => {
+    setViewTable(true);
+  };
+
+  const toggleCards = () => {
+    setViewTable(false);
+  };
+
+  // Render all the app gui
   const renderApp = () => {
     if (songs.length < 1) {
       return (
-        <div className="alert alert-warning mx-auto" role="alert">
+        <div className="alert alert-warning m-5" role="alert">
           No songs to show
         </div>
       );
     } else {
       return (
         <div>
-          <Cards songs={songs} />
-          <Table songs={songs} />
+          {!viewTable && renderCards()}
+          {viewTable && renderTable()}
         </div>
       );
     }
   };
 
+  // Render the Cards component
+  const renderCards = () => {
+    return <Cards songs={songs} />;
+  };
+
+  // Render the Table component
+  const renderTable = () => {
+    return <Table songs={songs} />;
+  };
+
   // To render
   return (
     <div className="App">
-      <Header onGetInfo={getInfoSB} />
+      <Header
+        onGetInfo={getInfoSB}
+        toggleTable={toggleTable}
+        toggleCards={toggleCards}
+      />
       {renderApp()}
     </div>
   );

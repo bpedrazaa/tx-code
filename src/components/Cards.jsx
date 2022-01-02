@@ -1,6 +1,7 @@
 import Card from "./Card";
 
 const Cards = ({ songs }) => {
+  // To render
   return (
     //Put cards in a column (side by side)
     <div className="row">

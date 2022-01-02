@@ -5,26 +5,22 @@ import Header from "./components/Header";
 function App() {
   const [songs, setSongs] = useState([]);
 
-  // useEffect(() => {
-  //   const getInfo = async () => {
-  //     const dataFromServer = await getInfoSB();
-  //   };
-
-  //   getInfo();
-  // }, []);
-
   // Get Info of the Search Bar
   const getInfoSB = async ({ text }) => {
     // Replace spaces with '+'
     text = text.replace(/ /g, "+");
-    const url = `https://itunes.apple.com/search?term=${text}&limit=1`;
+    const url = `https://itunes.apple.com/search?term=${text}&limit=10&media=music`;
 
+    // Get the Data
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
 
-    data.results.forEach((result) => {
-      let cleanData = {
+    const results = data.results;
+    let totalData = [];
+    // Iterate over the results
+    results.forEach((result) => {
+      let cleanData = null;
+      cleanData = {
         imageCover: result.artworkUrl100,
         songName: result.trackName,
         artistName: result.artistName,
@@ -34,12 +30,21 @@ function App() {
         previewUrl: result.previewUrl,
         trackId: result.trackId,
       };
-
-      console.log("This is the clean Data: ", cleanData);
-      setSongs([...songs, cleanData]);
+      // Create an array with the new results
+      totalData.push(cleanData);
     });
+
+    // Create a copy of the State attribute
+    let oldVersion = songs;
+    // Concatenete to create the new array to update
+    totalData = oldVersion.concat(totalData);
+    console.log("Songs: ", totalData);
+
+    // Update the State attribute songs
+    setSongs(totalData);
   };
 
+  // To render
   return (
     <div className="App">
       <Header onGetInfo={getInfoSB} />

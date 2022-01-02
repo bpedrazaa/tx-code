@@ -17,7 +17,7 @@ const Table = ({ songs }) => {
         </thead>
         <tbody>
           {songs.map((songInfo) => (
-            <tr>
+            <tr key={songInfo.trackId}>
               <th scope="row">{songInfo.songName}</th>
               <td>{songInfo.artistName}</td>
               <td>{songInfo.albumName}</td>

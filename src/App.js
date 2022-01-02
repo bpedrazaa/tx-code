@@ -45,6 +45,11 @@ function App() {
       console.log("Songs: ", totalData);
 
       */
+      // Sort the object data alphabetically by the attribute songName
+      totalData.sort((a, b) => {
+        return a.songName > b.songName ? 1 : b.songname > a.songName ? -1 : 0;
+      });
+
       // Update the State attribute songs
       setSongs(totalData);
     } catch (e) {

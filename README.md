@@ -1,6 +1,6 @@
 # Search content exercise for the internship program of Truextend
 
-Exercise developed with the React framework that request information about certaing songs of the iTunes API and retrieve it in a simple user interface.
+Exercise developed with the React framework that request information about certaing songs of the [iTunes API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-servicesearch-api/) and retrieve it in a simple user interface.
 
 ## Technologies
 
@@ -9,7 +9,7 @@ Project is created with:
 - react version: 17.0.2
 - react-dom version: 17:0.2
 - bootstrap version: 5.1.3
-- react-scripts version:5.0.0
+- react-scripts version: 5.0.0
 
 ## Setup
 

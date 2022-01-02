@@ -1,20 +1,71 @@
 import { useState } from "react";
 
-const Header = ({ onGetInfo }) => {
+const Header = ({ onGetInfo, toggleTable, toggleCards }) => {
   // Hook (State)
   const [text, setText] = useState("");
+  const [viewTable, setViewTable] = useState(false);
+  const [viewCards, setViewCards] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // Control de visibility of the buttons (Perhaps I overthink this section...)
+    if (!viewCards) {
+      setViewTable(true);
+      setViewCards(false);
+    } else if (!viewTable) {
+      setViewTable(false);
+      setViewCards(true);
+    } else {
+      setViewTable(true);
+    }
 
     if (!text) {
       alert("Please add some text to search");
       return;
+    } else {
+      // Pass the info
+      onGetInfo({ text });
+      // Set the text to empty on the state
+      setText("");
     }
-    // Pass the info
-    onGetInfo({ text });
-    // Set the text to empty on the state
-    setText("");
+  };
+
+  // Table Button
+  const onClickTableBtn = () => {
+    setViewTable(false);
+    setViewCards(true);
+    toggleTable();
+  };
+
+  const renderTableBtn = () => {
+    if (viewTable)
+      return (
+        <button
+          className="btn btn-outline-primary m-2"
+          onClick={onClickTableBtn}
+        >
+          See Table
+        </button>
+      );
+  };
+
+  // Cards Button
+  const onClickCardsBtn = () => {
+    setViewCards(false);
+    setViewTable(true);
+    toggleCards();
+  };
+
+  const renderCardsBtn = () => {
+    if (viewCards)
+      return (
+        <button
+          className="btn btn-outline-warning m-2"
+          onClick={onClickCardsBtn}
+        >
+          See Cards
+        </button>
+      );
   };
 
   return (
@@ -29,10 +80,12 @@ const Header = ({ onGetInfo }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button className="btn btn-outline-success m-2" type="submit">
           Search
         </button>
       </form>
+      {renderTableBtn()}
+      {renderCardsBtn()}
     </nav>
   );
 };

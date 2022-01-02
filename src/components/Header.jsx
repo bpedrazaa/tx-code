@@ -6,6 +6,7 @@ const Header = ({ onGetInfo, toggleTable, toggleCards }) => {
   const [viewTable, setViewTable] = useState(false);
   const [viewCards, setViewCards] = useState(false);
 
+  // Handle the placeholder and submit button
   const onSubmit = (e) => {
     e.preventDefault();
     // Control de visibility of the buttons (Perhaps I overthink this section...)
@@ -68,6 +69,7 @@ const Header = ({ onGetInfo, toggleTable, toggleCards }) => {
       );
   };
 
+  // To render
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light mx-auto">
       <h4 className="m-2 me-5">iTunes Store</h4>
